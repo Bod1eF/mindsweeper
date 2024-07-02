@@ -1,16 +1,26 @@
 import create_board from "../utils/create_board";
 import React, { useState, useEffect } from "react";
+import Cell from "./cell.js";
 
 function Board() {
   const [grid, setGrid] = useState([]);
 
   useEffect(() => {
     function fresh_board() {
-      const new_board = create_board(5, 5, 10);
+      const new_board = create_board(6, 6, 10);
       setGrid(new_board);
     }
     fresh_board();
   }, []);
+
+
+
+  const rightClick = (e, x, y) => {
+    e.preventDefault();
+    console.log("right click");
+
+  }
+
 
   // Check if grid is an array and has elements before rendering
   if (!Array.isArray(grid) || grid.length === 0) {
@@ -22,9 +32,7 @@ function Board() {
       {grid.map((row, rowIndex) => (
         <div key={rowIndex} className="row">
           {row.map((block, blockIndex) => (
-            <div key={blockIndex} className="block">
-              {block.value} {block.x}  {block.y}
-            </div>
+              <Cell key = {blockIndex} details = {block} rightClick = {rightClick} />
           ))}
         </div>
       ))}
