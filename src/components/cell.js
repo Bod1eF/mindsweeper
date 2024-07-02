@@ -1,11 +1,12 @@
 import React from "react";
 
-function Cell({details}, {rightClick}) {
+function Cell({details, rightClick, leftClick}) {
     return (
         <div className="cell"
         onContextMenu={(e) => rightClick(e, details.x, details.y)}
-        onClick={() => console.log(details)}>
-            {details.value}
+        onClick={(e) => leftClick(e, details.x, details.y)}>
+            {details.revealed ? details.value : " "}
+            {details.flag ? <h3>flag</h3> : ""}
         </div>
     );
 

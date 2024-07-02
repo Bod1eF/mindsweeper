@@ -4,11 +4,12 @@ function create_board(rows, columns, bombs) {
         let new_row = [];
         for (let col = 0; col < columns; col++) {
             new_row.push({
-                x: col,
-                y: row,
+                x: row,
+                y: col,
                 flag: false,
                 revealed: false,
                 value: "X",
+                bomb: false
             });
         }
         board.push(new_row);
