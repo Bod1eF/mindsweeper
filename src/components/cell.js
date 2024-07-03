@@ -6,7 +6,7 @@ function Cell({details, rightClick, leftClick}) {
         <div className="cell"
         onContextMenu={(e) => rightClick(e, details.x, details.y)}
         onClick={(e) => leftClick(e, details.x, details.y)}>
-            <h3 class="cell_values">{details.revealed ? details.value : " "}</h3>
+            <h3 className="cell_values"> {details.revealed ? details.value : " "} </h3>
             {details.flag ? <img className = "flag" src={flag} alt = "red flag icon" /> : ""}
         </div>
     );
