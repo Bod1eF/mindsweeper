@@ -3,6 +3,7 @@
   display:flex;
   align-items:center;
   flex-direction:column;
+  background-color: lightgray;
 }
 
 .row {
@@ -23,6 +24,12 @@
   display:flex;
   align-items:center;
   justify-content: center;
+  cursor:pointer;
+}
+
+.flag {
+  width:30px;
+  height:30px;
 }
 
 

@@ -7,15 +7,15 @@ function Board() {
 
   useEffect(() => {
     function fresh_board() {
-      let new_board = create_board(6, 6, 10);
+      let new_board = create_board(10, 10, 25);
       setGrid(new_board);
     }
     fresh_board();
   }, []);
 
   const rightClick = (e, x, y) => {
-    e.preventDefault();
-    const new_grid = grid.map(row => row.map(cell => ({ ...cell })));
+    e.preventDefault(); //prevent right click menu from popping up
+    const new_grid = grid.map(row => row.map(cell => ({ ...cell }))); //make deep copy to update grid state
     console.log("right click");
     new_grid[x][y].flag = !new_grid[x][y].flag;
     setGrid(new_grid);
@@ -35,9 +35,9 @@ function Board() {
   }
 
   // Check if grid is an array and has elements before rendering
-  if (!Array.isArray(grid) || grid.length === 0) {
-    return <div>Loading...</div>;
-  }
+  // if (!Array.isArray(grid) || grid.length === 0) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div>
