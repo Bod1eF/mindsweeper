@@ -1,6 +1,7 @@
 import create_board from "../utils/create_board";
 import React, { useState, useEffect } from "react";
 import Cell from "./cell.js";
+import Reveal from "../utils/reveal.js";
 
 function Board() {
   const [grid, setGrid] = useState([]);
@@ -16,28 +17,26 @@ function Board() {
   const rightClick = (e, x, y) => {
     e.preventDefault(); //prevent right click menu from popping up
     const new_grid = grid.map(row => row.map(cell => ({ ...cell }))); //make deep copy to update grid state
-    console.log("right click");
-    new_grid[x][y].flag = !new_grid[x][y].flag;
+    if (!new_grid[x][y].revealed) {
+      new_grid[x][y].flag = !new_grid[x][y].flag;
+    }
     setGrid(new_grid);
     console.log(new_grid[x][y])
   }
 
   const leftClick = (e, x, y) => {
     const new_grid = grid.map(row => row.map(cell => ({ ...cell })));
-    if (!new_grid[x][y].flag) {
+    if (!new_grid[x][y].flag && new_grid[x][y].bomb) {
       new_grid[x][y].revealed = true;
+      reveal(new_grid, x, y);
     }
     else if(new_grid[x][y].bomb) {
+      new_grid[x][y].revealed = true;
       //explode();
     }
     setGrid(new_grid);
     console.log(new_grid[x][y])
   }
-
-  // Check if grid is an array and has elements before rendering
-  // if (!Array.isArray(grid) || grid.length === 0) {
-  //   return <div>Loading...</div>;
-  // }
 
   return (
     <div>
