@@ -3,7 +3,7 @@ import flag from "../img/flag.svg";
 
 function Cell({details, rightClick, leftClick}) {
     return (
-        <div className="cell"
+        <div className={details.revealed ? "cell_revealed" : "cell"}
         onContextMenu={(e) => rightClick(e, details.x, details.y)}
         onClick={(e) => leftClick(e, details.x, details.y)}>
             <h3 className="cell_values"> {details.revealed ? details.value : " "} </h3>

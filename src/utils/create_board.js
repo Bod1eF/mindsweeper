@@ -4,9 +4,7 @@ function create_board(rows, columns, bombs) {
 
    for (let row = 0; row < rows; row++) {
         let new_row = [];
-        let bomb_row = [];
         for (let col = 0; col < columns; col++) {
-            bomb
             new_row.push({
                 x: row,
                 y: col,
@@ -15,16 +13,18 @@ function create_board(rows, columns, bombs) {
                 value: 0,
                 bomb: false
             });
+        
         }
         board.push(new_row);
-
     }
+
    let bomb_count = 0;
    while(bomb_count < bombs) {
     let x = random_num(0, rows - 1);
     let y = random_num(0, columns - 1);
     if (board[x][y].bomb === false) {
         board[x][y].bomb = true;
+        bomb_location.push([x,y]);
         board[x][y].value = "X";
         bomb_count++;
         
@@ -38,7 +38,8 @@ function create_board(rows, columns, bombs) {
     }
    }  
    console.log(board);
-   return board;
+
+  return [board, bomb_location];
 
 }
 
@@ -46,3 +47,4 @@ function random_num(min = 0, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 export default create_board;
+
