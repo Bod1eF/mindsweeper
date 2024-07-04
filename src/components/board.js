@@ -28,7 +28,7 @@ function Board() {
     const new_grid = grid.map(row => row.map(cell => ({ ...cell })));
     if (!new_grid[x][y].flag && new_grid[x][y].bomb) {
       new_grid[x][y].revealed = true;
-      reveal(new_grid, x, y);
+      // reveal(new_grid, x, y);
     }
     else if(new_grid[x][y].bomb) {
       new_grid[x][y].revealed = true;
