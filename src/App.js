@@ -5,7 +5,9 @@ function App() {
   return (
     <div className="App">
       <h1>MindSweeper</h1>
-      <Board/> 
+      <Timer />
+        
+      <Board /> 
     </div>
   );
 }
