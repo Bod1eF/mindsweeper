@@ -1,8 +1,12 @@
 function create_board(rows, columns, bombs) {
    let board = [];
+   let bomb_location = [];
+
    for (let row = 0; row < rows; row++) {
         let new_row = [];
+        let bomb_row = [];
         for (let col = 0; col < columns; col++) {
+            bomb
             new_row.push({
                 x: row,
                 y: col,
@@ -13,6 +17,7 @@ function create_board(rows, columns, bombs) {
             });
         }
         board.push(new_row);
+
     }
    let bomb_count = 0;
    while(bomb_count < bombs) {

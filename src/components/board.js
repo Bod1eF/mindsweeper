@@ -5,7 +5,7 @@ import Reveal from "../utils/reveal.js";
 
 function Board() {
   const [grid, setGrid] = useState([]);
-
+  let first_click = true;
   useEffect(() => {
     function fresh_board() {
       let new_board = create_board(10, 10, 25);
@@ -16,26 +16,30 @@ function Board() {
 
   const rightClick = (e, x, y) => {
     e.preventDefault(); //prevent right click menu from popping up
-    const new_grid = grid.map(row => row.map(cell => ({ ...cell }))); //make deep copy to update grid state
-    if (!new_grid[x][y].revealed) {
-      new_grid[x][y].flag = !new_grid[x][y].flag;
+    if (!first_click) {
+      const new_grid = grid.map(row => row.map(cell => ({ ...cell }))); //make deep copy to update grid state
+      if (!new_grid[x][y].revealed) {
+        new_grid[x][y].flag = !new_grid[x][y].flag;
+      }
+      setGrid(new_grid);
+      console.log(new_grid[x][y])
     }
-    setGrid(new_grid);
-    console.log(new_grid[x][y])
   }
 
   const leftClick = (e, x, y) => {
+    first_click = false;
     const new_grid = grid.map(row => row.map(cell => ({ ...cell })));
-    if (!new_grid[x][y].flag && new_grid[x][y].bomb) {
+    if (!new_grid[x][y].flag && !new_grid[x][y].bomb) {
       new_grid[x][y].revealed = true;
-      reveal(new_grid, x, y);
+      // reveal(new_grid, x, y);
     }
     else if(new_grid[x][y].bomb) {
       new_grid[x][y].revealed = true;
       //explode();
     }
     setGrid(new_grid);
-    console.log(new_grid[x][y])
+    console.log(new_grid[x][y]);
+    first_click = false;
   }
 
   return (
