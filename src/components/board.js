@@ -18,9 +18,9 @@ function Board() {
   const [win, setWin] = useState(false);
   const [resetTimer, setResetTimer] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
-  let rowDim = 8;
-  let colDim = 8;
-  let mineCount = 3;
+  let rowDim = 15;
+  let colDim = 15;
+  let mineCount = 45;
 
   function fresh_board() {
     let [new_board, new_bombs] = create_board(rowDim, colDim, mineCount);
