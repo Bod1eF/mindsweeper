@@ -1,10 +1,12 @@
-import create_board from "../utils/create_board";
+import create_board from "../utils/create_board.js";
 import React, { useState, useEffect } from "react";
-import Cell from "./cell.js";
+import Cell from "./Cell.js";
 import Reveal from "../utils/reveal.js";
 import explode from "../utils/explode.js";
 import flag from "../img/flag1.png";
 import Endscreen from "./Endscreen.js";
+import Timer from "./Timer.js";
+import timer_icon from "../img/timer.png";
 
 function Board() {
   const [grid, setGrid] = useState([]);
@@ -14,9 +16,11 @@ function Board() {
   const [firstClick, setClick] = useState(true);
   const [gameOver, setGameOver] = useState(false);
   const [win, setWin] = useState(false);
-  let rowDim = 15;
-  let colDim = 15;
-  let mineCount = 50;
+  const [resetTimer, setResetTimer] = useState(false);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  let rowDim = 8;
+  let colDim = 8;
+  let mineCount = 3;
 
   function fresh_board() {
     let [new_board, new_bombs] = create_board(rowDim, colDim, mineCount);
@@ -26,6 +30,9 @@ function Board() {
     setBombs(new_bombs);
     setGameOver(false);
     setWin(false);
+    setClick(true);
+    setResetTimer((prev) => !prev); 
+    setElapsedTime(0);
     }
 
   useEffect(() => {
@@ -82,18 +89,20 @@ function Board() {
     if (nonMineCount - Reveal(new_grid, x, y).revealCount === 0) {
       setGameOver(true);
       setWin(true);
+
     }
   }
 
   return (
     <div id="game_container">
-       {gameOver && <Endscreen win = {win} restartGame={restartGame} />}
+       {gameOver && <Endscreen win = {win} time = {elapsedTime} restartGame={restartGame} />}
 
       <div id="board_container">
-      <h1 className = "header">MindSweeper</h1>
+      <h1 className = "header">MineSweeper</h1>
       <div className="counter_container">
       <div><img className = "flag" src={flag} alt = "red flag icon" /><p className = "counter">{flagCount}</p></div>
       <div><div className = "cell" id = "cell_icon"></div><p className = "counter">{nonMineCount}</p></div>
+      <div><img className = "flag" src={timer_icon} alt = "timer icon" /><Timer gameOver = {gameOver} reset = {resetTimer} start = {!firstClick} onTimeChange={setElapsedTime}/></div>
       </div>
       <div id="board">
       {grid.map((row, rowIndex) => (
