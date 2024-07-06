@@ -1,5 +1,5 @@
 function reveal(grid, x, y) {
-    let revealCount = 0;
+    let revealCount = 1;
     let zeros = [];
     zeros.push(grid[x][y]);
      
