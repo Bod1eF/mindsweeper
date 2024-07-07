@@ -5,7 +5,7 @@ import Reveal from "../utils/reveal.js";
 import explode from "../utils/explode.js";
 import flag from "../img/flag1.png";
 import Endscreen from "./Endscreen.js";
-import Timer from "./Timer.js";
+import Timer from "./Timer1.js";
 import timer_icon from "../img/timer.png";
 
 function Board() {
