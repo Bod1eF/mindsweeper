@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/mindsweeper/static/css/main.36def58e.css",
-    "main.js": "/mindsweeper/static/js/main.17b4d459.js",
+    "main.js": "/mindsweeper/static/js/main.69e405e2.js",
     "static/media/bomb_icon.png": "/mindsweeper/static/media/bomb_icon.122d8efd2a30c512dceb.png",
     "index.html": "/mindsweeper/index.html",
     "main.36def58e.css.map": "/mindsweeper/static/css/main.36def58e.css.map",
-    "main.17b4d459.js.map": "/mindsweeper/static/js/main.17b4d459.js.map"
+    "main.69e405e2.js.map": "/mindsweeper/static/js/main.69e405e2.js.map"
   },
   "entrypoints": [
     "static/css/main.36def58e.css",
-    "static/js/main.17b4d459.js"
+    "static/js/main.69e405e2.js"
   ]
 }
